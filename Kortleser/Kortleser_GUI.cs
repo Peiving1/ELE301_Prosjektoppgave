@@ -30,13 +30,18 @@ namespace Kortleser
         // Tillater bare tall i kortID og PINkode, andre tegn ignoreres
         private void tbPINKode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar)) e.Handled = false;
-            else e.Handled = true;
+            e = validerInnput(e);
         }
         private void tbKortID_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e = validerInnput(e);
+        }
+        private KeyPressEventArgs validerInnput(KeyPressEventArgs e)
+        {
             if (char.IsDigit(e.KeyChar)) e.Handled = false;
+            else if (char.IsControl(e.KeyChar)) e.Handled = false;
             else e.Handled = true;
+            return e;
         }
     }
 }

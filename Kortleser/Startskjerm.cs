@@ -1,4 +1,4 @@
-namespace Kortleser
+﻿namespace Kortleser
 {
     public partial class Startskjerm : Form
     {
