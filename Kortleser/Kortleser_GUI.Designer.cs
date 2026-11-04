@@ -36,16 +36,19 @@
             btnBekreft = new Button();
             label3 = new Label();
             label2 = new Label();
+            bwHentData = new System.ComponentModel.BackgroundWorker();
+            lAlarm = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tbLokasjon
             // 
             tbLokasjon.Font = new Font("Segoe UI", 12F);
-            tbLokasjon.Location = new Point(110, 30);
+            tbLokasjon.Location = new Point(126, 34);
+            tbLokasjon.Margin = new Padding(3, 4, 3, 4);
             tbLokasjon.Name = "tbLokasjon";
             tbLokasjon.ReadOnly = true;
-            tbLokasjon.Size = new Size(100, 29);
+            tbLokasjon.Size = new Size(114, 34);
             tbLokasjon.TabIndex = 0;
             tbLokasjon.TabStop = false;
             // 
@@ -53,25 +56,27 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label1.Location = new Point(26, 30);
+            label1.Location = new Point(30, 40);
             label1.Name = "label1";
-            label1.Size = new Size(78, 21);
+            label1.Size = new Size(95, 28);
             label1.TabIndex = 1;
             label1.Text = "Lokasjon";
             // 
             // tbKortID
             // 
-            tbKortID.Location = new Point(45, 61);
+            tbKortID.Location = new Point(51, 81);
+            tbKortID.Margin = new Padding(3, 4, 3, 4);
             tbKortID.Name = "tbKortID";
-            tbKortID.Size = new Size(100, 23);
+            tbKortID.Size = new Size(114, 27);
             tbKortID.TabIndex = 2;
             tbKortID.KeyPress += tbKortID_KeyPress;
             // 
             // tbPINKode
             // 
-            tbPINKode.Location = new Point(160, 61);
+            tbPINKode.Location = new Point(183, 81);
+            tbPINKode.Margin = new Padding(3, 4, 3, 4);
             tbPINKode.Name = "tbPINKode";
-            tbPINKode.Size = new Size(100, 23);
+            tbPINKode.Size = new Size(114, 27);
             tbPINKode.TabIndex = 3;
             tbPINKode.KeyPress += tbPINKode_KeyPress;
             // 
@@ -83,48 +88,72 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(tbKortID);
             panel1.Controls.Add(tbPINKode);
-            panel1.Location = new Point(26, 117);
+            panel1.Location = new Point(30, 156);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(292, 138);
+            panel1.Size = new Size(333, 183);
             panel1.TabIndex = 4;
             // 
             // btnBekreft
             // 
-            btnBekreft.Location = new Point(112, 90);
+            btnBekreft.Location = new Point(128, 120);
+            btnBekreft.Margin = new Padding(3, 4, 3, 4);
             btnBekreft.Name = "btnBekreft";
-            btnBekreft.Size = new Size(75, 23);
+            btnBekreft.Size = new Size(86, 31);
             btnBekreft.TabIndex = 6;
             btnBekreft.Text = "Bekreft";
             btnBekreft.UseVisualStyleBackColor = true;
+            btnBekreft.Click += btnBekreft_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(176, 37);
+            label3.Location = new Point(201, 49);
             label3.Name = "label3";
-            label3.Size = new Size(53, 15);
+            label3.Size = new Size(67, 20);
             label3.TabIndex = 5;
             label3.Text = "PINKode";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(60, 37);
+            label2.Location = new Point(69, 49);
             label2.Name = "label2";
-            label2.Size = new Size(40, 15);
+            label2.Size = new Size(52, 20);
             label2.TabIndex = 4;
             label2.Text = "KortID";
             // 
+            // bwHentData
+            // 
+            bwHentData.DoWork += bwHentData_DoWork;
+            bwHentData.RunWorkerCompleted += bwHentData_RunWorkerCompleted;
+            // 
+            // lAlarm
+            // 
+            lAlarm.AutoSize = true;
+            lAlarm.BackColor = SystemColors.ControlDark;
+            lAlarm.Font = new Font("Segoe UI", 20.2F, FontStyle.Bold);
+            lAlarm.ForeColor = Color.Red;
+            lAlarm.Location = new Point(113, 85);
+            lAlarm.Name = "lAlarm";
+            lAlarm.Size = new Size(152, 46);
+            lAlarm.TabIndex = 5;
+            lAlarm.Text = "ALARM!";
+            lAlarm.Visible = false;
+            // 
             // Kortleser_GUI
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(349, 329);
+            ClientSize = new Size(399, 439);
+            Controls.Add(lAlarm);
             Controls.Add(label1);
             Controls.Add(tbLokasjon);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Kortleser_GUI";
             Text = "Kortleser_GUI";
+            FormClosing += Kortleser_GUI_FormClosing_1;
             Load += Kortleser_GUI_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -142,5 +171,7 @@
         private Button btnBekreft;
         private Label label3;
         private Label label2;
+        private System.ComponentModel.BackgroundWorker bwHentData;
+        private Label lAlarm;
     }
 }
